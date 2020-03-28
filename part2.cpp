@@ -14,28 +14,28 @@ static void printStats(std::vector<float> *rm, std::vector<float> *medv)
     // Test ROOM vector with all single vector input Statistic methods
     // SUM, MEAN, MEDIAN, RANGE
     std::cout << "RM vector " << std::endl;
-    std::cout << "Sum: " << MathStats::Sum(*rm) << std::endl;
-    std::cout << "Mean: " << MathStats::Mean(*rm) << std::endl;
-    std::cout << "Median: " << MathStats::Median(*rm) << std::endl;
-    range = MathStats::Range(*rm);
+    std::cout << "Sum: " << Sum(*rm) << std::endl;
+    std::cout << "Mean: " <<Mean(*rm) << std::endl;
+    std::cout << "Median: " << Median(*rm) << std::endl;
+    range = Range(*rm);
     std::cout << "Range:\n\rMax: " << range[0] << "\tMin: " << range[1] << std::endl;
-    std::cout << "Difference: " << MathStats::Diff(*rm) << std::endl;
+    std::cout << "Difference: " << Diff(*rm) << std::endl;
     std::cout << std::endl;
 
     // Test Median dwelling value vector with all single vector input Statistic methods
     // SUM, MEAN, MEDIAN, RANGE
     std::cout << "MEDV vector " << std::endl;
-    std::cout << "Sum: " << MathStats::Sum(*medv) << std::endl;
-    std::cout << "Mean: " << MathStats::Mean(*medv) << std::endl;
-    std::cout << "Median: " << MathStats::Median(*medv) << std::endl;
-    range = MathStats::Range(*medv);
+    std::cout << "Sum: " << Sum(*medv) << std::endl;
+    std::cout << "Mean: " << Mean(*medv) << std::endl;
+    std::cout << "Median: " << Median(*medv) << std::endl;
+    range = Range(*medv);
     std::cout << "Range:\n\rMax: " << range[0] << "\tMin: " << range[1] << std::endl;
-    std::cout << "Difference: " << MathStats::Diff(*medv) << std::endl;
+    std::cout << "Difference: " << Diff(*medv) << std::endl;
     std::cout << std::endl;
 
     // Test covariance and correlation functions with both vectors
-    std::cout << "Covariance: " << MathStats::Cov(*rm, *medv) << std::endl;
-    std::cout << "Correlation: " << MathStats::Corr(*rm, *medv) << std::endl;
+    std::cout << "Covariance: " << Cov(*rm, *medv) << std::endl;
+    std::cout << "Correlation: " << Corr(*rm, *medv) << std::endl;
 }
 
 static void processCSV(std::fstream &infile, std::vector<float> *rm, std::vector<float> *medv)
