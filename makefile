@@ -1,3 +1,8 @@
-quick:
-	g++ part2.cpp -o part2
-	./part2 boston.csv
+build:
+	g++ main.cpp table.hpp MathStats.hpp -o main -g
+
+run:
+	./main boston.csv
+
+debug:
+	gdb ./main
