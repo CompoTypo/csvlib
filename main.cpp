@@ -6,11 +6,11 @@
 #include <sstream>         // Data Stream IO
 #include <vector>          // vectors
 #include "./MathStats.hpp" // HOMEWORK FUNCTIONS
-#include "./table.hpp"     // CSV PARSE TO TABLE
+#include "./Table.hpp"     // CSV PARSE TO TABLE
 
 
 // tire kicker
-static void printStats(table t)
+static void printStats(Table<std::vector<std::string>> t)
 {
     // Test ROOM vector with all single vector input Statistic methods
     // SUM, MEAN, MEDIAN, RANGE
@@ -46,7 +46,7 @@ int main(int argc, const char **argv)
     std::fstream infile(argv[1], std::ios::in); // Open file, SEE MAKEFILE FOR USAGE
     // Setup vector for room statistics
 
-    table t = table(infile, true); // PART 1 load values into previously instantiated vectors
+    Table<std::vector<std::string>> t = Table<std::vector<std::string>>(infile, true); // PART 1 load values into previously instantiated vectors
     printStats(t);                                                                                      // PART 2+3 Print results, Kicks the wheels of the math functions in MathStats
 
     return 0; // we are done here

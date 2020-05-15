@@ -13,11 +13,12 @@
 //    val >> *out;
 //}
 
-class table
+template <class Row>
+class Table
 {
 private:
     std::vector<std::string> headers;
-    std::vector<std::vector<std::string>> data;
+    std::vector<Row> data;
     /* data */
     void parseTable(std::fstream &infile)
     {
@@ -25,20 +26,21 @@ private:
         getline(infile, line);        // grab first line from file
         while (getline(infile, line)) // while there are still lines to grab
         {
-            std::string word;      // word holder
+            std::string word;           // word holder
             std::stringstream LS(line); // put each line in a stream to getline again
             std::vector<std::string> linVec = std::vector<std::string>();
             while (getline(LS, word, ',')) // for each item in a line
                 linVec.push_back(word);
-            this->data.push_back(linVec);
+            Row r(linVec);
+            this->data.push_back(r);
         }
     }
 
     void parseHeaders(std::string head_line)
     {
         std::stringstream LS(head_line); // put each line in a stream to getline again
-        std::string header = "";          // word holder
-        while (getline(LS, header, ','))  // for each item in a line
+        std::string header = "";         // word holder
+        while (getline(LS, header, ',')) // for each item in a line
         {
             header = header.substr(1, header.length() - 2);
             this->headers.push_back(header);
@@ -46,13 +48,13 @@ private:
     }
 
 public:
-    table(/* args */)
+    Table(/* args */)
     {
         this->headers = std::vector<std::string>();
         this->data = std::vector<std::vector<std::string>>();
     }
 
-    table(std::fstream &infile, bool headers = false)
+    Table(std::fstream &infile, bool headers = false)
     {
         if (headers)
         {
@@ -62,9 +64,9 @@ public:
         }
         this->parseTable(infile);
     }
-    ~table() {}
+    ~Table() {}
 
-    std::vector<std::string> getRow(int rowNum) { return this->data.at(rowNum); }
+    Row getRow(int rowNum) { return this->data.at(rowNum); }
 
     std::vector<std::string> *getCol(int colNum)
     {
@@ -81,6 +83,11 @@ public:
             if (this->headers.at(i) == colHeader)
                 return getCol(i);
         return NULL;
+    }
+
+    int size()
+    {
+        return this->data.size();
     }
 };
 #endif // !TABLE_HPP

@@ -1,5 +1,5 @@
 build:
-	g++ main.cpp table.hpp MathStats.hpp -o main -g
+	g++ main.cpp Table.hpp MathStats.hpp -o main -g
 
 run:
 	./main boston.csv
